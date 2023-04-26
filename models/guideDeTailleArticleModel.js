@@ -1,16 +1,19 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const Facture = sequelize.define('facture', {
+const GuideDeTailleArticle = sequelize.define('guide_de_taille_article', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    montant: {
+    valeur_mesure: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    },
+    unite_mesure: {
+        type: Sequelize.STRING,
+        allowNull: false
+    } 
 },{timestamps: false})
-module.exports = Facture
-
+module.exports = GuideDeTailleArticle

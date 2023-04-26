@@ -11,7 +11,7 @@ const Selection = sequelize.define('selection',{
         type: Sequelize.STRING,
         allowNull: false
       },
-})
+},{timestamps: false})
 module.exports = Selection;
 
 

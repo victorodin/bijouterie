@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "init_db": "node ./dev-data/init_db",
+    "init_db": "node ./dev-data/init_db &&  node ./dev-data/init_data",
     "start": "node ./bin/www"
   },
   "dependencies": {

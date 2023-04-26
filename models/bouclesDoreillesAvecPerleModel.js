@@ -1,16 +1,15 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const Facture = sequelize.define('facture', {
+const BouclesDoreillesAvecPerle = sequelize.define('boucles_d_oreilles_avec_perle', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    montant: {
-        type: Sequelize.STRING,
+    nb_perles: {
+        type: Sequelize.INTEGER,
         allowNull: false
     }
 },{timestamps: false})
-module.exports = Facture
-
+module.exports = BouclesDoreillesAvecPerle

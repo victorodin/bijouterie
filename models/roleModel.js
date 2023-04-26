@@ -12,7 +12,7 @@ const Role = sequelize.define('role', {
         allowNull: false,
         defaultValue: 'client'
     }
-})
+},{timestamps: false})
 module.exports = Role
 
 

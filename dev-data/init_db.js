@@ -1,24 +1,29 @@
 const dotenv = require("dotenv")
-const mysql = require("mysql2");
-dotenv.config({ path: "./config.env" });
-const sequelize = require('./../server')
-//import schema
-const {Selection, Categorie, Article, Utilisateur, Role, Facture} = require('./../models/schema');
-
-
-// connection
-const connection = mysql.createConnection({
+const Sequelize = require('sequelize')
+dotenv.config({ path: "./config.env" })
+//connexion
+const sequelize = new Sequelize(
+  process.env.DB_NAME, 
+  process.env.DB_USERNAME, 
+  process.env.DB_PASSWORD, {
   host: process.env.DB_HOSTNAME,
   port: process.env.DB_PORT,
-  user: process.env.DB_USERNAME,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DIALECT,
+  dialect: process.env.DB_DIALECT
 });
-// create database 
-connection.query(`drop database ${process.env.DB_NAME}; create database ${process.env.DB_NAME}`, () => {
-  connection.close();
-  console.log("database: " + process.env.DB_NAME + " created!");
-});
-
-sequelize.sync({force: true})
+sequelize.authenticate()
+  .then(() => {
+    console.log('Connexion à la base de données réussie !')
+    return sequelize.query(`DROP DATABASE IF EXISTS ${process.env.DB_NAME};`)
+  })
+  .then(() => {
+    console.log(`Base de données "${process.env.DB_NAME}" supprimée avec succès !`)
+    return sequelize.query(`CREATE DATABASE ${process.env.DB_NAME};`)
+  })
+  .then(() => {
+    console.log(`Base de données "${process.env.DB_NAME}" créée avec succès !`)
+    sequelize.close()
+  })
+  .catch(err => {
+    console.error('Erreur lors de la connexion à la base de données :', err)
+  });
 

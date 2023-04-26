@@ -1,16 +1,19 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const Facture = sequelize.define('facture', {
+const CollierChaineBracelet = sequelize.define('collier_chaine_bracelet', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    montant: {
+    fermeture: {
         type: Sequelize.STRING,
         allowNull: false
+    },
+    motif: {
+        type: Sequelize.STRING,
+        allowNull: false,
     }
 },{timestamps: false})
-module.exports = Facture
-
+module.exports = CollierChaineBracelet

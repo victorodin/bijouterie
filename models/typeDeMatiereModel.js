@@ -1,16 +1,15 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const Facture = sequelize.define('facture', {
+const TypeDeMatiere = sequelize.define('type_de_matiere', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    montant: {
+    matiere: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    } 
 },{timestamps: false})
-module.exports = Facture
-
+module.exports = TypeDeMatiere

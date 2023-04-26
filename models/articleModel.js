@@ -19,5 +19,5 @@ const Article = sequelize.define('article', {
         type: Sequelize.STRING,
         allowNull: false,
     }
-})
+},{timestamps: false})
 module.exports = Article
