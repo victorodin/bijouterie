@@ -1,13 +1,13 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const BouclesDoreillesAvecPerle = sequelize.define('boucles_d_oreilles_avec_perle', {
+const BouclesDoreillesAvecPerle = sequelize.define('bouclesDoreillesAvecPerle', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    nb_perles: {
+    nbPerles: {
         type: Sequelize.INTEGER,
         allowNull: false
     }

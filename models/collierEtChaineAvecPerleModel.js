@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const CollierChaineBraceletAvecPerle = sequelize.define('collier_chaine_bracelet_avec_perle', {
+const CollierEtChaineAvecPerle = sequelize.define('collierEtChaineAvecPerle', {
     id: {
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    nb_perles: {
+    nbPerles: {
         type: Sequelize.INTEGER,
         allowNull: false
     }
 },{timestamps: false})
-module.exports = CollierChaineBraceletAvecPerle
+module.exports = CollierEtChaineAvecPerle

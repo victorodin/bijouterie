@@ -8,12 +8,12 @@ const Commande = require('./commandeModel')
 const LigneDeCommande = require('./ligneDeCommadeModel')
 const Gravure = require('./gravureModel')
 const Taille = require('./tailleModel')
-const CollierChaineBracelet = require('./collierChaineBraceletModel')
+const CollierEtChaine = require('./collierEtChaineModel')
 const Bague = require('./bagueModel')
 const BouclesDoreilles = require('./bouclesDoreillesModel')
 const ArticleTaille = require('./articleTailleModel')
 const Couleur = require('./couleurModel')
-const NbCarats = require('./nbCaratsModel')
+const NbCarat = require('./nbCaratModel')
 const TypeDePierre = require('./typeDePierreModel')
 const ArticleAvecPierre = require('./articleAvecPierreModel')
 const TypeDeMatiere = require('./typeDeMatiereModel')
@@ -21,7 +21,7 @@ const TypeDePerle = require('./typeDePerleModel')
 const Mesure = require('./mesureModel')
 const GuideDeTailleArticle = require('./guideDeTailleArticleModel')
 const BouclesDoreillesAvecPerle = require('./bouclesDoreillesAvecPerleModel')
-const CollierChaineBraceletAvecPerle = require('./collierChaineBraceletAvecPerleModel')
+const CollierEtChaineAvecPerle = require('./collierEtChaineAvecPerleModel')
 
 // selection - categorie
 Selection.belongsToMany(Categorie, { through: 'selectionCategorie' ,timestamps: false }) 
@@ -72,9 +72,9 @@ Taille.hasMany(LigneDeCommande)
 LigneDeCommande.belongsTo(Taille)
 
 // HERITAGE ARTICLE
-CollierChaineBracelet.hasOne(Article, { foreignKey: 'id', sourceKey: 'id' })
-Bague.hasOne(Article, { foreignKey: 'id', sourceKey: 'id' });
-BouclesDoreilles.hasOne(Article, { foreignKey: 'id', sourceKey: 'id' })
+Article.hasOne(CollierEtChaine)
+Bague.belongsTo(Article);
+Article.hasOne(BouclesDoreilles)
 
 // article - taille (model: articleTaille comprend le stock)
 Article.belongsToMany(Taille, { through: 'articleTaille' ,timestamps: false })
@@ -85,38 +85,38 @@ TypeDeMatiere.hasMany(Article)
 Article.belongsTo(TypeDeMatiere)
 
 //type de matiere - nombre de carats
-TypeDeMatiere.belongsToMany(NbCarats, { through: 'typeDeMatiereNbCarats', timestamps: false })
-NbCarats.belongsToMany(TypeDeMatiere, { through: 'typeDeMatiereNbCarats', timestamps: false })
+TypeDeMatiere.belongsToMany(NbCarat, { through: 'typeDeMatiereNbCarat', timestamps: false })
+NbCarat.belongsToMany(TypeDeMatiere, { through: 'typeDeMatiereNbCarat', timestamps: false })
 
 //type de matiere - couleur
 TypeDeMatiere.belongsToMany(Couleur, { through: 'typeDeMatiereCouleur' ,timestamps: false })
 Couleur.belongsToMany(TypeDeMatiere, { through: 'typeDeMatiereCouleur' ,timestamps: false })
 
 //Nombre de carats - Article
-NbCarats.hasMany(Article)
-Article.belongsTo(NbCarats)
+NbCarat.hasMany(Article)
+Article.belongsTo(NbCarat)
 
 //Nombre de carats - Type de pierre 
-TypeDePierre.belongsToMany(NbCarats, { through: 'typeDePierre_NbCarats' ,timestamps: false })
-NbCarats.belongsToMany(TypeDePierre, { through: 'typeDePierre_NbCarats' ,timestamps: false })
+NbCarat.belongsToMany(TypeDePierre, { through: 'typeDePierreNbCarat' ,timestamps: false })
+TypeDePierre.belongsToMany(NbCarat, { through: 'typeDePierreNbCarat' ,timestamps: false })
 
 //Type de pierre - Couleur
-TypeDePierre.belongsToMany(Couleur, { through: 'typeDePierre_Couleur' ,timestamps: false })
-Couleur.belongsToMany(TypeDePierre, { through: 'typeDePierre_Couleur' ,timestamps: false })
+TypeDePierre.belongsToMany(Couleur, { through: 'typeDePierreCouleur' ,timestamps: false })
+Couleur.belongsToMany(TypeDePierre, { through: 'typeDePierreCouleur' ,timestamps: false })
 
 //Couleur - Article
 Article.belongsToMany(Couleur, { through: 'articleCouleur' ,timestamps: false })
 Couleur.belongsToMany(Article, { through: 'articleCouleur' ,timestamps: false })
 
 //Type de perle - Couleur
-TypeDePerle.belongsToMany(Couleur, { through: 'type_de_perle_Couleur' ,timestamps: false })
-Couleur.belongsToMany(Article, { through: 'type_de_perle_Couleur' ,timestamps: false })
+TypeDePerle.belongsToMany(Couleur, { through: 'typeDePerleCouleur' ,timestamps: false })
+Couleur.belongsToMany(TypeDePerle, { through: 'typeDePerleCouleur' ,timestamps: false })
 
 //N-AIR ArticleAvecPierre: article - nbCt - nbPierres - typeDePierre - couleur 
 Article.hasMany(ArticleAvecPierre);
 TypeDePierre.hasMany(ArticleAvecPierre);
 Couleur.hasMany(ArticleAvecPierre);
-NbCarats.hasMany(ArticleAvecPierre);
+NbCarat.hasMany(ArticleAvecPierre);
 
 //N-AIR: GuideDeTailleArticle: article - taille - mesure  
 Article.hasMany(GuideDeTailleArticle);
@@ -128,10 +128,10 @@ BouclesDoreilles.hasMany(BouclesDoreillesAvecPerle);
 TypeDePerle.hasMany(BouclesDoreillesAvecPerle);
 Couleur.hasMany(BouclesDoreillesAvecPerle);
 
-//N-AIR: CollierChaineBraceletAvecPerle: collier_chaine_bracelet - type de perle - couleur - nb perles  
-CollierChaineBracelet.hasMany(CollierChaineBraceletAvecPerle);
-TypeDePerle.hasMany(CollierChaineBraceletAvecPerle);
-Couleur.hasMany(CollierChaineBraceletAvecPerle);
+//N-AIR: CollierEtChaineAvecPerle: collier_chaine_bracelet - type de perle - couleur - nb perles  
+CollierEtChaine.hasMany(CollierEtChaineAvecPerle);
+TypeDePerle.hasMany(CollierEtChaineAvecPerle);
+Couleur.hasMany(CollierEtChaineAvecPerle);
 
 module.exports = {
     Selection, 
@@ -143,18 +143,18 @@ module.exports = {
     Commande, 
     LigneDeCommande, 
     Taille,
-    CollierChaineBracelet,
+    CollierEtChaine,
     Bague,
     BouclesDoreilles,
     ArticleTaille,
     Couleur,
     TypeDePierre,
-    NbCarats,
+    NbCarat,
     ArticleAvecPierre,
     TypeDeMatiere,
     TypeDePerle,
     Mesure,
     GuideDeTailleArticle,
     BouclesDoreillesAvecPerle,
-    CollierChaineBraceletAvecPerle
+    CollierEtChaineAvecPerle
 }

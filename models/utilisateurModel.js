@@ -9,19 +9,23 @@ const Utilisateur = sequelize.define('utilisateur',{
     },
     nom: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        isAlpha: true
     },
     prenom: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        isAlpha: true
     },
     email: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        isEmail: true
     },
     telephone: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        isNumeric: true
     },
     adresse: {
         type: Sequelize.STRING,
@@ -32,7 +36,7 @@ const Utilisateur = sequelize.define('utilisateur',{
         allowNull: false
     },
 
-})
+},{timestamps: false})
 module.exports = Utilisateur;
 
 

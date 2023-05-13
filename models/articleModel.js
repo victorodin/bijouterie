@@ -3,6 +3,8 @@ const sequelize = require('../server')
 
 const Article = sequelize.define('article', {
     id: {
+        //type: Sequelize.UUID,
+        //defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
         autoIncrement: true,
         type: Sequelize.INTEGER
@@ -18,6 +20,10 @@ const Article = sequelize.define('article', {
     message: {
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    image: {
+        type: Sequelize.STRING,
+        allowNull: true,
     }
 },{timestamps: false})
 module.exports = Article

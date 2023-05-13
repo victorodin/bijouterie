@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const TypeDePierre = sequelize.define('type_de_pierre', {
+const TypeDePierre = sequelize.define('typeDePierre', {
   id: {
     primaryKey: true,
     autoIncrement: true,

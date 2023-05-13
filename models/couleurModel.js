@@ -8,7 +8,7 @@ const Couleur = sequelize.define('couleur', {
     type: Sequelize.INTEGER,
   },
   nom: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
     allowNull: false,
   }
 },{timestamps: false});

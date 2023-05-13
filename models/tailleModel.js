@@ -9,6 +9,7 @@ const Taille = sequelize.define('taille', {
     },
     taille: {
         type: Sequelize.STRING,
+        defaultValue: "taille unique",
         allowNull: false
     } 
 },{timestamps: false})

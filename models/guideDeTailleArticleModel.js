@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const GuideDeTailleArticle = sequelize.define('guide_de_taille_article', {
+const GuideDeTailleArticle = sequelize.define('guideDeTailleArticle', {
     id: {
         primaryKey: true,
         autoIncrement: true,

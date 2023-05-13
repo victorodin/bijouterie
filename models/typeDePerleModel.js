@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const TypeDePerle = sequelize.define('type_de_perle', {
+const TypeDePerle = sequelize.define('typeDePerle', {
     id: {
         primaryKey: true,
         autoIncrement: true,

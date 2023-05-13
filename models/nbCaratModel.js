@@ -1,15 +1,15 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const NbCarats = sequelize.define('nb_carats', {
+const NbCarats = sequelize.define('nbCarat', {
   id: {
     primaryKey: true,
     autoIncrement: true,
     type: Sequelize.INTEGER,
   },
     valeur: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
+      type: Sequelize.STRING,
+      allowNull: true
     }
   },{timestamps: false});
 

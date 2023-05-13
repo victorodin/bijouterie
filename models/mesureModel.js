@@ -7,7 +7,7 @@ const Mesure = sequelize.define('mesure', {
         autoIncrement: true,
         type: Sequelize.INTEGER
     },
-    nom_mesure: {
+    mesure: {
         type: Sequelize.STRING,
         allowNull: true
     }

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const TypeDeMatiere = sequelize.define('type_de_matiere', {
+const TypeDeMatiere = sequelize.define('typeDeMatiere', {
     id: {
         primaryKey: true,
         autoIncrement: true,

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../server')
 
-const CollierChaineBracelet = sequelize.define('collier_chaine_bracelet', {
+const CollierEtChaine = sequelize.define('collierEtChaine', {
     id: {
         primaryKey: true,
         autoIncrement: true,
@@ -13,7 +13,8 @@ const CollierChaineBracelet = sequelize.define('collier_chaine_bracelet', {
     },
     motif: {
         type: Sequelize.STRING,
-        allowNull: false,
+        defaultValue: "sans motif",
+        allowNull: true,
     }
 },{timestamps: false})
-module.exports = CollierChaineBracelet
+module.exports = CollierEtChaine
